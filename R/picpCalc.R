@@ -25,9 +25,6 @@
 
 picpCalc = function(data, response, pred){
 
-  #set global variables
-  utils::globalVariables(c("CCC", "x", "y"))
-
   #get residuals
   res = response - pred
 
