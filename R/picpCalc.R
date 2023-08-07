@@ -79,7 +79,7 @@ picpCalc = function(data, response, pred){
   ccc$y = 90 #y axis
 
   #plot the line
-  p = ggplot2::ggplot(data = results, ggplot2::aes(x= cs, y =picp))+
+  p = ggplot2::ggplot(data = results, ggplot2::aes(x= cs, y = picp))+
     ggplot2::geom_point()+
     ggplot2::geom_text(data = ccc, ggplot2::aes(x = x, y = y, label = paste("CCC = ",round(CCC, 2))))+
     ggplot2::geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = 'red')+
