@@ -24,7 +24,7 @@
 plotStar = function(image, continuous = T, fill = "Property", title = "Predictions", breaks = 5, ...){
 
   #get boundary of farm
-  bounds = sf::union(sf::st_as_sf(image[1], merge = T))
+  bounds = sf::st_union(sf::st_as_sf(image[1], merge = T))
 
   #must reproject if plot without sf = T
   image = stars::st_warp(image, crs = 4326)
