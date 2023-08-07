@@ -22,9 +22,6 @@
 
 evalReg = function(val, property, model, limit = 0.95, plot = TRUE, ...){
 
-  #set global variables
-  utils::globalVariables(c("obvs", "pred"))
-
   #set metrics to use for evaluation
   mets = yardstick::metric_set(...)
 
