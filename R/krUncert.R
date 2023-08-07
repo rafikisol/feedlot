@@ -33,5 +33,5 @@ krUncert = function(preds, kriged, limit = 0.95){
   uncert = c(lower, range, upper)
   names(uncert) = c("Lower", "Range","Upper")
 
-  return(stars::merge(uncert))
+  return(merge(uncert))
 }
