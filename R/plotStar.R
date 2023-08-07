@@ -20,6 +20,7 @@
 #'@return Returns an figure of the stars object with a scale bar and north arrow.Color is
 #'set to color blind friendly for people like me.
 #'@export
+#'
 
 plotStar = function(image, continuous = T, fill = "Property", title = "Predictions", breaks = 5, ...){
 
