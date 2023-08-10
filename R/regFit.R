@@ -56,7 +56,7 @@ regFit = function(data, x, y, method = "rf", engine = "randomForest", ...){
 
   #cubist
   if(method == "cubist"){
-    rfMod = parsnip::cubist_rules()%>%
+    mod = parsnip::cubist_rules()%>%
       parsnip::set_mode("regression")%>%
       rules::cubist_fit(x = x, y = y, ...)
   }
