@@ -42,7 +42,10 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
       ggspatial::annotation_north_arrow(location = "tl")+
       ggplot2::labs(x = "Lontitude", y = "Latitude", fill = fill, title = title)+
       ggplot2::coord_sf(crs = 4326)+
-      ggplot2::theme_bw()
+      ggplot2::theme_bw()+ ggplot2::theme(strip.background  = element_blank(),
+                                          strip.text = element_text(hjust = 0, size = 10,face='bold'),
+                                          axis.title=element_text(size=10,face="bold"),
+                                          axis.text = element_text(color = 'black'),panel.background = element_blank())
 
     #binned
     if(continuous == FALSE){
@@ -73,7 +76,10 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
       ggplot2::labs(x = "Lontitude", y = "Latitude", fill = fill, title = title)+
       ggplot2::coord_sf(crs = 4326)+
       ggplot2::facet_wrap(~ attributes, ...)+
-      ggplot2::theme_bw()
+      ggplot2::theme_bw() + ggplot2::theme(strip.background  = element_blank(),
+                                  strip.text = element_text(hjust = 0, size = 10,face='bold'),
+                                  axis.title=element_text(size=10,face="bold"),
+                                  axis.text = element_text(color = 'black'),panel.background = element_blank())
 
     #binned
     if(continuous == FALSE){

@@ -2,10 +2,12 @@
 
 export("%>%")
 export(decide)
+export(densDistro)
 export(evalReg)
 export(krUncert)
 export(picpCalc)
 export(plotStar)
 export(regFit)
+export(sumStat)
 export(what_mod)
 importFrom(magrittr,"%>%")

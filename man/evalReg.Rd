@@ -22,7 +22,8 @@ predicting things such as quantiles for uncertainty analysis.}
 should just right them out in the function (e.g., ccc, rmse, etc.) and not in a list or vector.}
 }
 \value{
-A list with the regression line plot, evaluation statistics and raw results.
+A list with the regression line plot, evaluation statistics and raw results. The raw
+data is a data frame of the observed, predicted, residuals, standard error, upper and lower limits.
 }
 \description{
 This function predicts a tidymodel on an evaluation dataset and runs user defined

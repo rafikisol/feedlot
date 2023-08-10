@@ -85,7 +85,10 @@ picpCalc = function(data, response, pred){
     ggplot2::geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = 'red')+
     ggplot2::labs(x = 'Confidence level', y = "PICP", title = "PICP to confidence level")+
     tune::coord_obs_pred()+
-    ggplot2::theme_bw()
+    ggplot2::theme_bw()+ ggplot2::theme(strip.background  = element_blank(),
+                                          strip.text = element_text(hjust = 0, size = 10,face='bold'),
+                                          axis.title=element_text(size=10,face="bold"),
+                                          axis.text = element_text(color = 'black'),panel.background = element_blank())
 
   #return plot and results
   return(stats::setNames(list(p, results), c("Plot", "Results")))

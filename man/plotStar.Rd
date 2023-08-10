@@ -7,6 +7,7 @@
 plotStar(
   image,
   continuous = T,
+  scale = "quantile",
   fill = "Property",
   title = "Predictions",
   breaks = 5,
