@@ -75,13 +75,13 @@ picpCalc = function(data, response, pred){
   #Get CCC of 1:1 line
   ccc = as.data.frame(yardstick::ccc_vec(results$picp, results$cs))
   names(ccc) = "CCC" #name
-  ccc$x = 10 #x axis
-  ccc$y = 90 #y axis
+  ccc$cs = 10 #x axis
+  ccc$picp = 90 #y axis
 
   #plot the line
   p = ggplot2::ggplot(data = results, ggplot2::aes(x= cs, y = picp))+
     ggplot2::geom_point()+
-    ggplot2::geom_text(data = ccc, ggplot2::aes(x = x, y = y, label = paste("CCC = ",round(CCC, 2))))+
+    ggplot2::geom_text(data = ccc, ggplot2::aes(x = cs, y = picp, label = paste("CCC = ",round(CCC, 2))))+
     ggplot2::geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = 'red')+
     ggplot2::labs(x = 'Confidence level', y = "PICP", title = "PICP to confidence level")+
     tune::coord_obs_pred()+

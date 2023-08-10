@@ -22,7 +22,7 @@
 #'@export
 #'
 
-plotStar = function(image, continuous = T, fill = "Property", title = "Predictions", breaks = 5, ...){
+plotStar = function(image, continuous = T, scale = "quantile", fill = "Property", title = "Predictions", breaks = 5, ...){
 
   #get boundary of farm
   bounds = sf::st_union(sf::st_as_sf(image[1], merge = T))
@@ -30,12 +30,14 @@ plotStar = function(image, continuous = T, fill = "Property", title = "Predictio
   #must reproject if plot without sf = T
   image = stars::st_warp(image, crs = 4326)
 
+  #make into datagramfe
+  cuts = as.data.frame(image)
   #make plot (want to save for later)
   if(length(dim(image)) <= 2){
 
     p = ggplot2::ggplot()+
       stars::geom_stars(data = image)+
-      ggplot2::geom_sf(data = bounds, fill = NA, color = 'black', lwd = 1)+
+      ggplot2::geom_sf(data = bounds, fill = NA, lwd = 1)+
       ggspatial::annotation_scale(location = "br")+
       ggspatial::annotation_north_arrow(location = "tl")+
       ggplot2::labs(x = "Lontitude", y = "Latitude", fill = fill, title = title)+
@@ -46,7 +48,8 @@ plotStar = function(image, continuous = T, fill = "Property", title = "Predictio
     if(continuous == FALSE){
       p = p +
         ggplot2::scale_fill_viridis_b(option = 'turbo', na.value = NA,
-                                      n.breaks = breaks)
+                                      n.breaks = breaks,
+                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = T))
     }
 
     #continuous
@@ -76,7 +79,8 @@ plotStar = function(image, continuous = T, fill = "Property", title = "Predictio
     if(continuous == FALSE){
       p = p +
         ggplot2::scale_fill_viridis_b(option = 'turbo', na.value = NA,
-                                      n.breaks = breaks)
+                                      n.breaks = breaks,
+                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = T))
     }
 
     #continous
@@ -88,3 +92,4 @@ plotStar = function(image, continuous = T, fill = "Property", title = "Predictio
   }
   return(p)
 }
+

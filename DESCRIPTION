@@ -7,6 +7,7 @@ Maintainer: Trevan Flynn <admin@rafikisol.com>
 Description: A small package for wrapper functions for regression kriging concerning tidymodels and gstat. Most functions come from publications. Specifically, Malone et al. (2017) and others.
 License: GPL-2
 Encoding: UTF-8
-Depends: magrittr
 LazyData: true
 RoxygenNote: 7.2.3
+Imports: 
+    magrittr

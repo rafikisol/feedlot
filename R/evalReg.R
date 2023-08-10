@@ -17,7 +17,8 @@
 #'@param plot Logical, should a plot of the regression line be made.
 #'predicting things such as quantiles for uncertainty analysis.
 #'
-#'@return A list with the regression line plot, evaluation statistics and raw results.
+#'@return A list with the regression line plot, evaluation statistics and raw results. The raw
+#'data is a data frame of the observed, predicted, residuals, standard error, upper and lower limits.
 #'@export
 
 evalReg = function(val, property, model, limit = 0.95, plot = TRUE, ...){
@@ -46,6 +47,7 @@ evalReg = function(val, property, model, limit = 0.95, plot = TRUE, ...){
 
   #get evaluation statistics
   results = df %>% mets(obvs, pred)
+  results = results[, -2]
 
   #plot if plot = TRUE
   if(plot == TRUE){
