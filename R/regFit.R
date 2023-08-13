@@ -11,6 +11,8 @@
 #'@param data A data frame of the training dataset with predictors and response.
 #'@param x Is a matrix/dataframe of the predictors (e.g., calib[, 1:8]).
 #'@param y Is a vector of the response to be predicted.
+#'@param form A formula only used when method = gam. To fit smoothers to the covriates.If gam
+#'is specified than x and y do not need to be.
 #'@param method Is a character of which algorithm to use. see what_mod() to see which models are
 #'available and character to enter.
 #'@param engine Which package should be used to run the algorithm. See show_engines()
@@ -20,7 +22,7 @@
 #'@return A tidymodels object.
 #'@export
 
-regFit = function(data, x, y, method = "rf", engine = "randomForest", ...){
+regFit = function(data, x, y, form, method = "rf", engine = "randomForest", ...){
 
   #linear regression
   if(method == "lm"){
@@ -59,6 +61,15 @@ regFit = function(data, x, y, method = "rf", engine = "randomForest", ...){
     mod = parsnip::cubist_rules()%>%
       parsnip::set_mode("regression")%>%
       rules::cubist_fit(x = x, y = y, ...)
+  }
+
+  #GAM
+  if(method == "gam"){
+    mod = parsnip::gen_additive_mod()%>%
+      parsnip::set_engine("mgcv")%>%
+      parsnip::set_mode("regression")%>%
+      parsnip::fit(form, data = data)
+
   }
 
   #linear SVM

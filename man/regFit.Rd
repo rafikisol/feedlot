@@ -4,7 +4,7 @@
 \alias{regFit}
 \title{Build and train a regression tidymodel}
 \usage{
-regFit(data, x, y, method = "rf", engine = "randomForest", ...)
+regFit(data, x, y, form, method = "rf", engine = "randomForest", ...)
 }
 \arguments{
 \item{data}{A data frame of the training dataset with predictors and response.}
@@ -12,6 +12,9 @@ regFit(data, x, y, method = "rf", engine = "randomForest", ...)
 \item{x}{Is a matrix/dataframe of the predictors (e.g., calib[, 1:8]).}
 
 \item{y}{Is a vector of the response to be predicted.}
+
+\item{form}{A formula only used when method = gam. To fit smoothers to the covriates.If gam
+is specified than x and y do not need to be.}
 
 \item{method}{Is a character of which algorithm to use. see what_mod() to see which models are
 available and character to enter.}

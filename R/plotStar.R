@@ -37,7 +37,7 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
 
     p = ggplot2::ggplot()+
       stars::geom_stars(data = image)+
-      ggplot2::geom_sf(data = bounds, fill = NA, lwd = 1)+
+      ggplot2::geom_sf(data = bounds, fill = NA, color = "black", lwd = 1)+
       ggspatial::annotation_scale(location = "br")+
       ggspatial::annotation_north_arrow(location = "tl")+
       ggplot2::labs(x = "Lontitude", y = "Latitude", fill = fill, title = title)+
@@ -49,10 +49,18 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
 
     #binned
     if(continuous == FALSE){
+
+      #get values in long format
+      br = na.omit(as.data.frame(image)[, -c(1,2)])
+
+      #get quantiles
+      br = classInt::classIntervals(var = na.omit(br[, 1]), n = breaks)[[2]]
+      br = ceiling(br)
+
       p = p +
         ggplot2::scale_fill_viridis_b(option = 'turbo', na.value = NA,
-                                      n.breaks = breaks,
-                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = T))
+                                      breaks = br,
+                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = F))
     }
 
     #continuous
@@ -83,10 +91,18 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
 
     #binned
     if(continuous == FALSE){
+
+      #get values in long format
+      br = na.omit(as.data.frame(image)[, -c(1,2)])
+
+      #get quantiles
+      br = classInt::classIntervals(var = na.omit(br[, 2]), n = breaks)[[2]]
+      br = ceiling(br)
+
       p = p +
         ggplot2::scale_fill_viridis_b(option = 'turbo', na.value = NA,
-                                      n.breaks = breaks,
-                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = T))
+                                      breaks = br,
+                                      guide = ggplot2::guide_colorsteps(even.steps = F, show.limits = F))
     }
 
     #continous
@@ -98,4 +114,4 @@ plotStar = function(image, continuous = T, scale = "quantile", fill = "Property"
   }
   return(p)
 }
-
+#END
